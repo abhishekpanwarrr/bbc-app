@@ -2,14 +2,12 @@ import CartItemRow from "@/components/order/CartItemRow";
 import PickupSelector from "@/components/order/PickupSelector";
 import { useTheme } from "@/context/ThemeContext";
 import { useCart } from "@/store/useCart";
-import { useRouter } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function CartScreen() {
   const { theme } = useTheme();
   const { items, total } = useCart();
-  const router = useRouter();
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }}>
