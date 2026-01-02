@@ -10,6 +10,7 @@ export default function Quiz() {
   const router = useRouter();
   const { prefs, setPref, completeQuiz } = usePreferences();
   const [step, setStep] = useState(0);
+  console.log("🚀 ~ Quiz ~ step:", step);
 
   const next = () => setStep((s) => s + 1);
 

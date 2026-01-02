@@ -2,7 +2,7 @@ import { useTheme } from "@/context/ThemeContext";
 import { Switch, Text, View } from "react-native";
 
 export default function ThemeToggle() {
-  const { dark, setDark, theme } = useTheme();
+  const { dark, toggleTheme, theme } = useTheme();
 
   return (
     <View
@@ -17,7 +17,7 @@ export default function ThemeToggle() {
       }}
     >
       <Text style={{ color: theme.text, fontWeight: "500" }}>Dark Mode</Text>
-      <Switch value={dark} onValueChange={setDark} />
+      <Switch value={dark} onValueChange={toggleTheme} />
     </View>
   );
 }

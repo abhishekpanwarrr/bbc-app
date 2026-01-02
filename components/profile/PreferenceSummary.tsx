@@ -1,9 +1,7 @@
-import { useTheme } from "@/context/ThemeContext";
 import { usePreferences } from "@/store/usePreferences";
 import { Text, View } from "react-native";
 
 export default function PreferenceSummary() {
-  const { theme } = useTheme();
   const { prefs } = usePreferences();
 
   if (!prefs.completed) {
@@ -13,8 +11,7 @@ export default function PreferenceSummary() {
   return (
     <View>
       <Text style={{ color: "#777", fontSize: 13 }}>
-        {prefs.strength} • {prefs.milk} • {prefs.sweetness} •{" "}
-        {prefs.temperature}
+        {prefs.strength} • {prefs.milk} • {prefs.sweetness} • {prefs.temperature}
       </Text>
     </View>
   );

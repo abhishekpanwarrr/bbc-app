@@ -3,11 +3,22 @@ import CoffeeCard from "@/components/menu/CoffeeCard";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { useTheme } from "@/context/ThemeContext";
-import { ScrollView, Text, View } from "react-native";
+import { getMenu, MenuCategory } from "@/lib/api/menu";
+import { useEffect, useState } from "react";
+import { FlatList, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Home() {
+  const [menu, setMenu] = useState<MenuCategory[]>([]);
   const { theme } = useTheme();
+  useEffect(() => {
+    const loadMenu = async () => {
+      const data = await getMenu();
+      setMenu(data);
+    };
+
+    loadMenu();
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }}>
@@ -28,9 +39,7 @@ export default function Home() {
           Good evening ☕
         </Text>
 
-        <Text style={{ color: "#777", marginBottom: 20 }}>
-          Ready for your next coffee?
-        </Text>
+        <Text style={{ color: "#777", marginBottom: 20 }}>Ready for your next coffee?</Text>
 
         {/* Order Again */}
         <PrimaryButton label="Order again" />
@@ -39,11 +48,13 @@ export default function Home() {
         <View style={{ marginTop: 28 }}>
           <SectionHeader title="Featured drinks" />
 
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <CoffeeCard name="Cappuccino" price="180" />
-            <CoffeeCard name="Cold Brew" price="220" />
-            <CoffeeCard name="Latte" price="200" />
-          </ScrollView>
+          <FlatList
+            data={menu}
+            keyExtractor={(item) => item.id}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item }) => <CoffeeCard name={item.name} imageUrl={item?.imageUrl} />}
+          />
         </View>
 
         {/* Loyalty */}

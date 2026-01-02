@@ -1,13 +1,7 @@
 import { useTheme } from "@/context/ThemeContext";
-import { Text, TouchableOpacity } from "react-native";
+import { Image, Text, TouchableOpacity } from "react-native";
 
-export default function CoffeeCard({
-  name,
-  price,
-}: {
-  name: string;
-  price: string;
-}) {
+export default function CoffeeCard({ name, imageUrl }: { name: string; imageUrl?: string }) {
   const { theme } = useTheme();
 
   return (
@@ -16,8 +10,10 @@ export default function CoffeeCard({
         backgroundColor: theme.card,
         padding: 14,
         borderRadius: 18,
-        width: 160,
+        width: 150,
         marginRight: 12,
+        alignItems: "center",
+        gap: 10,
       }}
     >
       <Text
@@ -31,17 +27,15 @@ export default function CoffeeCard({
         {name}
       </Text>
 
-      <Text style={{ color: "#777", fontSize: 13 }}>Smooth • Balanced</Text>
-
-      <Text
-        style={{
-          color: theme.primary,
-          fontWeight: "600",
-          marginTop: 8,
+      <Image
+        source={{
+          uri: imageUrl,
         }}
-      >
-        ₹{price}
-      </Text>
+        style={{
+          width: 40,
+          height: 40,
+        }}
+      />
     </TouchableOpacity>
   );
 }

@@ -7,7 +7,7 @@ export default function SettingRow({
   onPress,
 }: {
   label: string;
-  value?: string;
+  value?: string | React.ReactNode;
   onPress?: () => void;
 }) {
   const { theme } = useTheme();
@@ -24,8 +24,10 @@ export default function SettingRow({
     >
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text style={{ color: theme.text, fontWeight: "500" }}>{label}</Text>
-        {value && (
+        {typeof value === "string" ? (
           <Text style={{ color: "#777", marginLeft: 10 }}>{value}</Text>
+        ) : (
+          value
         )}
       </View>
     </TouchableOpacity>
