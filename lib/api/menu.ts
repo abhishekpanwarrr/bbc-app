@@ -23,12 +23,31 @@ export interface MenuCategory {
   items?: MenuItem[];
 }
 
+export interface MenuCategoryWithItems {
+  id: string;
+  name: string;
+  imageUrl?: string | null;
+  order: number;
+  items: MenuItem[];
+}
+
 export type MenuResponse = MenuCategory[];
 
 export async function getMenu(): Promise<MenuResponse> {
   const token = useAuthStore.getState().token;
 
   return apiFetch("/menu", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export async function getMenuItemsByCategory(categoryId: string): Promise<MenuCategoryWithItems> {
+  const token = useAuthStore.getState().token;
+
+  return apiFetch(`/menu/category/${categoryId}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,

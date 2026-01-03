@@ -94,6 +94,12 @@ function RootLayoutNav() {
         />
 
         <Stack.Screen name="quiz/index" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="inventory/[id]"
+          options={{
+            presentation: "modal",
+          }}
+        />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

@@ -42,18 +42,21 @@ export default function Home() {
         <Text style={{ color: "#777", marginBottom: 20 }}>Ready for your next coffee?</Text>
 
         {/* Order Again */}
-        <PrimaryButton label="Order again" />
+        {/* <PrimaryButton label="Order again" /> */}
 
         {/* Featured */}
         <View style={{ marginTop: 28 }}>
-          <SectionHeader title="Featured drinks" />
+          <SectionHeader title="Featured items" />
 
           <FlatList
             data={menu}
             keyExtractor={(item) => item.id}
             horizontal
             showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => <CoffeeCard name={item.name} imageUrl={item?.imageUrl} />}
+            renderItem={({ item }) => (
+              <CoffeeCard name={item.name} id={item.id} imageUrl={item?.imageUrl} />
+            )}
+            ListEmptyComponent={<Text style={{ marginTop: 20 }}>No items in this category</Text>}
           />
         </View>
 

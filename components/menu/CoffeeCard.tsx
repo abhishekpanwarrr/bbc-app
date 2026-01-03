@@ -1,11 +1,27 @@
 import { useTheme } from "@/context/ThemeContext";
+import { useRouter } from "expo-router";
 import { Image, Text, TouchableOpacity } from "react-native";
 
-export default function CoffeeCard({ name, imageUrl }: { name: string; imageUrl?: string }) {
+export default function CoffeeCard({
+  id,
+  name,
+  imageUrl,
+}: {
+  id: string;
+  name: string;
+  imageUrl?: string;
+}) {
   const { theme } = useTheme();
-
+  const router = useRouter();
   return (
     <TouchableOpacity
+      onPress={() => router.push(`/inventory/${id}`)}
+      //       onPress={() =>
+      //   router.push({
+      //     pathname: "/inventory/[id]",
+      //     params: { id },
+      //   })
+      // }
       style={{
         backgroundColor: theme.card,
         padding: 14,
