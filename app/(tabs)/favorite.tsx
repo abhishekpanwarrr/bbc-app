@@ -1,13 +1,9 @@
-import RewardCard from "@/components/loyalty/RewardCard";
-import StampGrid from "@/components/loyalty/StampGrid";
 import { useTheme } from "@/context/ThemeContext";
-import { useLoyalty } from "@/store/useLoyalty";
 import { ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Loyalty() {
+export default function Favorite() {
   const { theme } = useTheme();
-  const { stamps, totalStamps } = useLoyalty();
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }}>
@@ -25,13 +21,6 @@ export default function Loyalty() {
         >
           Loyalty Rewards 🎁
         </Text>
-
-        <Text style={{ color: "#777", marginBottom: 20 }}>
-          {stamps} / {totalStamps} coffees collected
-        </Text>
-
-        <StampGrid />
-        <RewardCard />
       </ScrollView>
     </SafeAreaView>
   );

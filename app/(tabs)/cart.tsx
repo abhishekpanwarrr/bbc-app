@@ -4,7 +4,7 @@ import { useTheme } from "@/context/ThemeContext";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Community() {
+export default function Cart() {
   const { theme } = useTheme();
 
   return (
@@ -25,9 +25,7 @@ export default function Community() {
           Community ☕
         </Text>
 
-        <Text style={{ color: "#777", marginBottom: 20 }}>
-          What’s happening at your café
-        </Text>
+        <Text style={{ color: "#777", marginBottom: 20 }}>What’s happening at your café</Text>
 
         {/* Events */}
         <Text
@@ -41,16 +39,8 @@ export default function Community() {
           Upcoming Events
         </Text>
 
-        <EventCard
-          title="Latte Art Workshop"
-          date="Sat, 12 Oct • 5 PM"
-          type="Workshop"
-        />
-        <EventCard
-          title="Open Mic Night"
-          date="Fri, 18 Oct • 7 PM"
-          type="Music"
-        />
+        <EventCard title="Latte Art Workshop" date="Sat, 12 Oct • 5 PM" type="Workshop" />
+        <EventCard title="Open Mic Night" date="Fri, 18 Oct • 7 PM" type="Music" />
 
         {/* Notices */}
         <View style={{ marginTop: 24 }}>

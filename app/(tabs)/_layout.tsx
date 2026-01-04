@@ -26,29 +26,20 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="order"
+        name="cart"
         options={{
-          title: "Order",
+          title: "Cart",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="cafe-outline" size={size} color={color} />
+            <Ionicons name="bag-outline" size={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="loyalty"
+        name="favorite"
         options={{
-          title: "Loyalty",
+          title: "Favorite",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="gift-outline" size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="community"
-        options={{
-          title: "Community",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="people-outline" size={size} color={color} />
+            <Ionicons name="heart-outline" size={size} color={color} />
           ),
         }}
       />

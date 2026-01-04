@@ -1,4 +1,5 @@
 const API_URL = "http://localhost:8000/api/v1";
+// const API_URL = "https://bbc-backend-exp-production.up.railway.app/api/v1";
 
 export async function apiFetch(path: string, options: RequestInit = {}) {
   const res = await fetch(`${API_URL}${path}`, {
@@ -8,7 +9,6 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
     },
     ...options,
   });
-  console.log("🚀 ~ apiFetch ~ res:", res);
 
   if (!res.ok) {
     let message = "Something went wrong";

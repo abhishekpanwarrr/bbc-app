@@ -7,8 +7,8 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
-import { useAuthStore } from "@/store/authStore";
 import { Ionicons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -41,29 +41,12 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const { token, user } = useAuthStore();
-  console.log("🚀 ~ RootLayoutNav ~ user:", user);
-  console.log("🚀 ~ RootLayoutNav ~ token:", token);
   const router = useRouter();
-  const navigatorKey = token ? (user?.role === "ADMIN" ? "auth-admin" : "auth-user") : "guest";
-  useEffect(() => {
-    console.log("RESET AUTH FOR TEST");
-    useAuthStore.getState().logout();
-  }, []);
   return (
     <ThemeProvider>
-      <Stack
-        key={navigatorKey}
-        initialRouteName={token && user?.role === "ADMIN" ? "(admin)/index" : "(tabs)"}
-      >
-        {token && user?.role === "ADMIN" ? (
-          <Stack.Screen name="(admin)" options={{ headerShown: false }} />
-        ) : (
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        )}
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
-        {/* Common screens */}
-        <Stack.Screen name="order/cart" options={{ headerShown: false }} />
         <Stack.Screen
           name="user/orders"
           options={{
@@ -92,12 +75,23 @@ function RootLayoutNav() {
             title: "My Payments",
           }}
         />
-
-        <Stack.Screen name="quiz/index" options={{ headerShown: false }} />
         <Stack.Screen
-          name="inventory/[id]"
+          name="user/login"
+          options={{
+            presentation: "pageSheet",
+            title: "Authentication",
+          }}
+        />
+        <Stack.Screen
+          name="item/[id]"
           options={{
             presentation: "modal",
+            headerTitle: "Details",
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={22} color="#111" />
+              </TouchableOpacity>
+            ),
           }}
         />
       </Stack>
