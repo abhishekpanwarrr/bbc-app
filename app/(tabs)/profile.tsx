@@ -7,7 +7,6 @@ import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ProfileBox from "@/components/profile/ProfileBox";
 import { Ionicons } from "@expo/vector-icons";
-import Colors from "@/constants/Colors";
 
 export default function Profile() {
   const { theme } = useTheme();
